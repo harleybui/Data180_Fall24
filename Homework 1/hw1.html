@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2024-09-13" />
+<meta name="date" content="2024-09-17" />
 
 <title>HW 1</title>
 
@@ -351,10 +351,10 @@ display: none;
 
 <h1 class="title toc-ignore">HW 1</h1>
 <h3 class="subtitle">Data 180, Professor Kessler</h3>
-<h4 class="author">Your Name</h4>
-<a class="author_email" href="mailto:#"><a href="mailto:XXXX@dickinson.edu" class="email">XXXX@dickinson.edu</a></a>
+<h4 class="author">Harley Bui</h4>
+<a class="author_email" href="mailto:#"><a href="mailto:buiha@dickinson.edu" class="email">buiha@dickinson.edu</a></a>
 </address>
-<h4 class="date">September 13, 2024</h4>
+<h4 class="date">September 17, 2024</h4>
 
 </div>
 
@@ -378,6 +378,10 @@ the tutorial “Introduction to R”.</p>
 <li>Store the data below in a data frame object named
 <code>my_df</code>.</li>
 </ol>
+<pre class="r"><code>my_df &lt;- data.frame(
+  Person = c(&quot;Alice&quot;,&quot;Bob&quot;,&quot;Charlie&quot;,&quot;Denise&quot;,&quot;Erin&quot;,&quot;Frank&quot;,&quot;Gisele&quot;,&quot;Harry&quot;,&quot;Zachary&quot;,&quot;Aren&quot;,&quot;Mike&quot;,&quot;Hannah&quot;),
+  Preference = c(&quot;Twitter&quot;,&quot;Facebook&quot;,&quot;Twitter&quot;,&quot;Instagram&quot;,&quot;Facebook&quot;,&quot;Twitter&quot;,&quot;Twitter&quot;,&quot;Instagram&quot;,&quot;Threads&quot;,&quot;Snapchat&quot;,&quot;TikTok&quot;,&quot;TikTok&quot;)
+  )</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -437,39 +441,95 @@ the tutorial “Introduction to R”.</p>
 </tbody>
 </table>
 <ol start="2" style="list-style-type: lower-alpha">
-<li><p>What are the dimensions of <code>my_df</code>?</p></li>
-<li><p>Write R code that counts the total number of users.</p></li>
-<li><p>Write R code that counts the total number of users who prefer
-Twitter.</p></li>
-<li><p>Write R code that returns what Gisele prefers.</p></li>
+<li>What are the dimensions of <code>my_df</code>?</li>
 </ol>
+<pre class="r"><code>dimensions &lt;- dim(my_df)</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Write R code that counts the total number of users.</li>
+</ol>
+<pre class="r"><code>rows &lt;- nrow(my_df[my_df$Person,])</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Write R code that counts the total number of users who prefer
+Twitter.</li>
+</ol>
+<pre class="r"><code>rows &lt;- nrow(my_df[my_df$Preference==&quot;Twitter&quot;,])</code></pre>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Write R code that returns what Gisele prefers.</li>
+</ol>
+<pre class="r"><code>my_df[my_df$Person==&quot;Gisele&quot;,&quot;Preference&quot;,]</code></pre>
+<pre><code>## [1] &quot;Twitter&quot;</code></pre>
 </div>
 <div id="task-2" class="section level2">
 <h2>Task 2</h2>
 <ol style="list-style-type: lower-alpha">
-<li><p>Create a vector named <code>my_vec</code> that includes all
-integers from 1 to 10 (inclusive).</p></li>
-<li><p>Replace the second element in <code>my_vec</code> with the number
-<code>99</code>.</p></li>
-<li><p>Write a function called <code>my_func</code> that prints
+<li>Create a vector named <code>my_vec</code> that includes all integers
+from 1 to 10 (inclusive).</li>
+</ol>
+<pre class="r"><code>my_vec &lt;- 1:10</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Replace the second element in <code>my_vec</code> with the number
+<code>99</code>.</li>
+</ol>
+<pre class="r"><code>my_vec[2]&lt;- 99</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Write a function called <code>my_func</code> that prints
 <code>This element is greater than 5!</code> if an element in
 <code>myvec</code> is greater than 5, and
-<code>This element is NOT greater than 5!</code> otherwise.</p></li>
+<code>This element is NOT greater than 5!</code> otherwise.</li>
 </ol>
+<pre class="r"><code>my_func &lt;- function(myvec) {
+  for (elem in myvec) {
+    if(elem &gt;5) {
+      print(&quot;This element is greater than 5!&quot;)
+    }
+    else{
+      print(&quot;This element is NOT greater than 5!&quot;)
+    }
+  }
+}
+my_func(my_vec)</code></pre>
+<pre><code>## [1] &quot;This element is NOT greater than 5!&quot;
+## [1] &quot;This element is greater than 5!&quot;
+## [1] &quot;This element is NOT greater than 5!&quot;
+## [1] &quot;This element is NOT greater than 5!&quot;
+## [1] &quot;This element is NOT greater than 5!&quot;
+## [1] &quot;This element is greater than 5!&quot;
+## [1] &quot;This element is greater than 5!&quot;
+## [1] &quot;This element is greater than 5!&quot;
+## [1] &quot;This element is greater than 5!&quot;
+## [1] &quot;This element is greater than 5!&quot;</code></pre>
 </div>
 <div id="task-3" class="section level2">
 <h2>Task 3</h2>
 <ol style="list-style-type: lower-alpha">
-<li><p>Write a function named <code>get_fibonacci</code> that returns
-the n’th value in the <a href="https://www.mathsisfun.com/numbers/fibonacci-sequence.html">fibonacci
+<li>Write a function named <code>get_fibonacci</code> that returns the
+n’th value in the <a href="https://www.mathsisfun.com/numbers/fibonacci-sequence.html">fibonacci
 sequence</a>. For example, <code>get_fibonacci(5)</code> should return
 3; <code>get_fibonacci(7)</code> should return 8 and so on.
 <em><strong>Hint:</strong> It is possible to call the same function from
 inside it. E.g., you can call <code>get_fibonacci()</code> from inside
-<code>get_fibonacci()</code>. Like inception!</em></p></li>
-<li><p>Using your function in part (a), find and return the 19th value
-in the fibonacci sequence.</p></li>
+<code>get_fibonacci()</code>. Like inception!</em></li>
 </ol>
+<pre class="r"><code>get_fibonacci &lt;- function(x){
+  if(x == 1){
+    return(0)
+  }
+  else if (x == 2){
+    return(1)
+  }
+  else{
+    return(get_fibonacci(x-1) + get_fibonacci(x-2))
+  }
+}
+
+get_fibonacci(7)</code></pre>
+<pre><code>## [1] 8</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Using your function in part (a), find and return the 19th value in
+the fibonacci sequence.</li>
+</ol>
+<pre class="r"><code>get_fibonacci(19)</code></pre>
+<pre><code>## [1] 2584</code></pre>
 <p><br> You are done! 🏁 Don’t forget to <code>commit</code> and
 <code>push</code> your .Rmd file to your Github clone repository before
 the due date. <br></p>
